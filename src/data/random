@@ -1,14 +1,6 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Time Sheet
-    </ion-title>
+https://wellsapp-9ef37.firebaseio.com/chris.json?auth=MTnhWFwoABcCIpqaVPZA0YjEN7aFMo40c0GGAQwb
 
-    <h4>Employee ID: </h4>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
+works to call firebase
 
 <div align="center"> 
   <h2>Employee: {{activeUser.firstName}} {{activeUser.lastName}} </h2>
@@ -75,5 +67,3 @@
   </div>
   <h2>Time Worked: </h2> <input [(ngModel)]="totalTimeWorked"> 
 </div>
-
-
