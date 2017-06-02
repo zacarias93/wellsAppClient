@@ -8,19 +8,22 @@
 
 <ion-content padding>
 
-<h2>First Name: </h2> <input [(ngModel)]="firstName" (ngModelChange)="submitFirstName(firstName)">
-<h2>E-mail: </h2> <input [(ngModel)]="email" (ngModelChange)="submitEmail(email)"> 
-<h2>Password: </h2> <input [(ngModel)]="password" (ngModelChange)="submitPassword(password)">
+<h2>First Name: </h2> <input [(ngModel)]="firstName">
+<h2>Password: </h2> <input [(ngModel)]="password">
 
 <br><br>
-  <form (ngSubmit)="login()">
+  <form (ngSubmit)="login(firstName)">
     <button ion-button type="submit"> Login</button>
   </form>
-
+<br> <div *ngIf='message'><h4>{{message}} </h4></div>
 
 <br> first name:  {{firstName}}
-<br> email:  {{email}}
 <br> password:  {{password}}
+<br>
+<br> ID:  {{user.ID}}
+<br> first name:  {{user.firstName}}
+<br> last name:  {{user.lastName}}
+<br> password:  {{user.password}}
 
 
 

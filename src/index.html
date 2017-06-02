@@ -14,6 +14,24 @@
   <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
 
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyD2pUMVLPOqnCuqaO6Imi3aKCzVyDOVjuI",
+      authDomain: "wellsapp-9ef37.firebaseapp.com",
+      databaseURL: "https://wellsapp-9ef37.firebaseio.com",
+      projectId: "wellsapp-9ef37",
+      storageBucket: "wellsapp-9ef37.appspot.com",
+      messagingSenderId: "719160192326"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <!--MY TEST-->
+  <!--<script src="lib/firebase/firebase.js"></script>
+  <script src="lib/angular-fire/angular-fire.min.js"></script>-->
+
   <!-- un-comment this code to enable service worker
   <script>
     if ('serviceWorker' in navigator) {

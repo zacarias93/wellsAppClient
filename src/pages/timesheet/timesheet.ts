@@ -137,6 +137,10 @@ export class TimeSheetPage {
     }
   }
 
+  submitTimeSheet() {
+    console.log( 'hello world' )
+  }
+
 }
 
 

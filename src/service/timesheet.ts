@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class UserService {
+export class TimeSheetService {
     constructor(private http: Http) {}
 
     private usersURL = 'https://wellsapp-9ef37.firebaseio.com/'
@@ -30,4 +30,3 @@ export class UserService {
 
 
 }
-

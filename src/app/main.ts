@@ -5,9 +5,6 @@ import { AppModule } from './app.module';
 platformBrowserDynamic().bootstrapModule(AppModule);
 
 
-// Goals:
 
-// Unit Testing
-// - services
 
 
