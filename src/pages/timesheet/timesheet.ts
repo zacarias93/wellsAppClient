@@ -28,7 +28,7 @@ export class TimeSheetPage {
 
   }
 
-  activeUser = new User(22, 'keeper', 'Zacarias', 'Lee')
+  activeUser = new User(99, 'pass', 'Sample', 'User')
   selectedJob: any = null;
   listOfJobs: any = null;
 
