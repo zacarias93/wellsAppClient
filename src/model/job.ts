@@ -5,4 +5,8 @@ export class Job {
   }
   id: number
   name: string
+
+  toString() {
+    return '\nID: ' + this.id + '\nName: ' + this.name
+  }
 }

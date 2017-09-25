@@ -8,24 +8,25 @@ import { User } from '../../model/user';
 import { UserService } from '../../service/user';
 
 
-
 @Component({
   selector: 'page-timesheet',
   templateUrl: 'timesheet.html',
   providers: [UserService],
-  
+
 
 })
 
 export class TimeSheetPage {
   constructor(public navCtrl: NavController) {
-    
+
   }
 
   ngOnInit() {
     console.log(this.activeUser);
     this.loadJobs();
-
+    this.loadTimes();
+    this.selectedJob = this.listOfJobs[0]
+    this.totalTimeWorked = '8 hours'
   }
 
   activeUser = new User(99, 'pass', 'Sample', 'User')
@@ -40,26 +41,35 @@ export class TimeSheetPage {
     var listOfJobs = [job1, job2, job3, job4]
     this.listOfJobs = listOfJobs;
   }
-  
-    selectJob(job) {
+
+  loadTimes() {
+    this.hourIn = '09';
+    this.minuteIn = '00';
+    this.meridianIn = 'AM';
+    this.hourOut = '05';
+    this.minuteOut = '30';
+    this.meridianOut = 'PM'
+  }
+
+  selectJob(job) {
     this.selectedJob = job;
     console.log(this.selectedJob);
   }
 
-  hours = TimeSheet.hours;
-  minutes = TimeSheet.minutes;
-  meridians = TimeSheet.meridians
+  // hours = TimeSheet.hours;
+  // minutes = TimeSheet.minutes;
+  // meridians = TimeSheet.meridians
 
-  hourIn:string;
-  minuteIn:string;
-  meridianIn:string;
+  hourIn: string;
+  minuteIn: string;
+  meridianIn: string;
 
-  hourOut:string;
-  minuteOut:string;
-  meridianOut:string;
+  hourOut: string;
+  minuteOut: string;
+  meridianOut: string;
 
-  totalTimeWorked:string;
-  errorMessage:string;
+  totalTimeWorked: string;
+  errorMessage: string;
 
   enterHourIn(hour) {
     this.hourIn = hour;
@@ -82,12 +92,12 @@ export class TimeSheetPage {
 
   convertToMilitary() {
 
-    if(this.meridianIn == 'PM') {
+    if (this.meridianIn == 'PM') {
       var hourIn = parseInt(this.hourIn) + 12;
     }
     else var hourIn = parseInt(this.hourIn)
 
-    if(this.meridianOut == 'PM') {
+    if (this.meridianOut == 'PM') {
       var hourOut = parseInt(this.hourOut) + 12;
     }
     else var hourOut = parseInt(this.hourOut)
@@ -103,14 +113,15 @@ export class TimeSheetPage {
     }
 
     var timeMap = {
-      timeIn : militaryIn,
-      timeOut : militaryOut
+      timeIn: militaryIn,
+      timeOut: militaryOut
     }
 
-    return  timeMap       
-    }
+    return timeMap
+  }
 
   calcHoursWorked() {
+    this.totalTimeWorked = ''
     this.errorMessage = null;
     var timeMap = this.convertToMilitary()
     var mapOut = timeMap.timeOut;
@@ -124,11 +135,11 @@ export class TimeSheetPage {
     var fractionOfHourWorked = (totalMinutesWorked % 60) / 60; //fraction of hour worked
     var totalTimeWorked = totalHoursWorked + fractionOfHourWorked;
 
-    if(totalTimeWorked == null) {
+    if (totalTimeWorked == null) {
       this.totalTimeWorked = null;
       this.errorMessage = 'Total time worked is NULL';
     }
-    else if(totalTimeWorked < 0) {
+    else if (totalTimeWorked < 0) {
       this.totalTimeWorked = null;
       this.errorMessage = 'You must clock in BEFORE you clock out.';
     }
@@ -138,7 +149,8 @@ export class TimeSheetPage {
   }
 
   submitTimeSheet() {
-    console.log( 'hello world' )
+    var timesheet = new TimeSheet(this.selectedJob, this.totalTimeWorked);
+    console.log(timesheet);
   }
 
 }
