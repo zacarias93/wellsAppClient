@@ -29,7 +29,7 @@ export class TimeSheetPage {
     this.totalTimeWorked = '8 hours'
   }
 
-  activeUser = new User(99, 'pass', 'Sample', 'User')
+  activeUser = new User(99, 'pass', 'Sample', 'User', 99)
   selectedJob: any = null;
   listOfJobs: any = null;
 
@@ -149,7 +149,7 @@ export class TimeSheetPage {
   }
 
   submitTimeSheet() {
-    var timesheet = new TimeSheet(this.selectedJob, this.totalTimeWorked);
+    var timesheet = new TimeSheet(this.activeUser, this.selectedJob, this.totalTimeWorked);
     console.log(timesheet);
   }
 

@@ -1,19 +1,19 @@
 import { Job } from './job'
+import { User } from './user'
 
 export class TimeSheet {
-  constructor( job:Job, hoursWorked: string ) {
+  constructor( user: User, job:Job, hoursWorked: string ) {
+    this.user = user;
     this.job = job
     this.hoursWorked = hoursWorked
   }
 
   job: Job
-  employeeID: number      // THIS WILL BE TAKEN FROM USER PROFILE LATER
-  timeIn:number
-  timeOut:number
+  user: User      // THIS WILL BE TAKEN FROM USER PROFILE LATER
   hoursWorked:string
 
   toString() {
-    return 'Timehsheet: \n' + this.job.toString() + '\n' + '\nhoursWorked: ' + this.hoursWorked;
+    return this.job.toString() + '\nhoursWorked: ' + this.hoursWorked;
   }
   
 }

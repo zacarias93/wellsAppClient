@@ -19,7 +19,7 @@ export class LoginPage {
 
   message: string
 
-  user: User = new User(0, '', '', '')
+  user: User = new User(0, '', '', '', 0)
 
   activeLastName: any
   activeFirstName: string
