@@ -1,23 +1,25 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { CommonModule } from '@angular/common';
+// import { CommonModule } from '@angular/common';
 
 import { TimeSheet } from '../../model/timesheet';
 import { Job } from '../../model/job';
 import { User } from '../../model/user';
-import { UserService } from '../../service/user';
+import { UserService } from '../../service/userService';
+import { TimeSheetService } from '../../service/timesheetService';
+
 
 
 @Component({
   selector: 'page-timesheet',
   templateUrl: 'timesheet.html',
-  providers: [UserService],
+  providers: [UserService, TimeSheetService],
 
 
 })
 
 export class TimeSheetPage {
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private userService: UserService, private timeSheetService: TimeSheetService) {
 
   }
 
@@ -32,6 +34,7 @@ export class TimeSheetPage {
   activeUser = new User(99, 'pass', 'Sample', 'User', 99)
   selectedJob: any = null;
   listOfJobs: any = null;
+  timesheet: TimeSheet
 
   loadJobs() { //make this a service
     var job1 = new Job(1, 'Ashland Engineering')
@@ -148,9 +151,29 @@ export class TimeSheetPage {
     }
   }
 
+  getTimeSheets() {
+    this.timeSheetService.getTimesheets()
+      .subscribe((data) => console.log(data))
+  }
+
   submitTimeSheet() {
+    console.log('submitTimeSheet()')
+
     var timesheet = new TimeSheet(this.activeUser, this.selectedJob, this.totalTimeWorked);
     console.log(timesheet);
+    
+    this.timeSheetService.submitTimeSheet(timesheet)
+      // .subscribe((data) => this.printData(this.timesheet = data))
+    
+  }
+
+
+
+
+
+
+  printData(timesheet: TimeSheet) {
+    console.log(timesheet)
   }
 
 }

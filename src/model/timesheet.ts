@@ -2,21 +2,33 @@ import { Job } from './job'
 import { User } from './user'
 
 export class TimeSheet {
-  constructor( user: User, job:Job, hoursWorked: string ) {
-    this.user = user;
-    this.job = job
+  constructor(user: User, job: Job, hoursWorked: string) {
+    this.employeeID = user.ID
+    this.employeeFirstName = user.firstName
+    this.employeeLastName = user.lastName
+    this.payRate = user.payRate
+    this.jobName = job.name
+    this.jobId = job.id
     this.hoursWorked = hoursWorked
   }
 
-  job: Job
-  user: User      // THIS WILL BE TAKEN FROM USER PROFILE LATER
-  hoursWorked:string
+  employeeID: number
+  employeeFirstName: string
+  employeeLastName: string
+  payRate: number
 
-  toString() {
-    return this.job.toString() + '\nhoursWorked: ' + this.hoursWorked;
-  }
-  
+  jobName: string
+  jobId: number
+
+  hoursWorked: string
+
+toString() {
+  return 'Employee: ' + this.employeeFirstName + ' ' + this.employeeLastName + ' ' + this.employeeID + ' ' + this.payRate + 
+        '\nJob:' + this.jobName + ' ' + this.jobId + 
+        '\nHoursWorked: ' + this.hoursWorked
 }
+}
+
 
 
 

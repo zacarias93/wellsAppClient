@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { UserService } from '../../service/user';
+import { UserService } from '../../service/userService';
 import { User } from '../../model/user';
-import { Observable } from 'rxjs/Observable'
+// import { Observable } from 'rxjs/Observable'
 
 @Component({
   selector: 'page-login',
