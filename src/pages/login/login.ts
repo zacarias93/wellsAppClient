@@ -14,38 +14,67 @@ export class LoginPage {
 
   constructor(private nav: NavController, private userService: UserService) { }
 
-  firstName: string
+  userName: string
   password: string
 
   message: string
 
+  errMsg: string = 'Invalid username or password.'
+
   user: User = new User(0, '', '', '', 0)
 
-  activeLastName: any
-  activeFirstName: string
-  activeID: string
-  activePassword: string
+  login(name: string) { //pass in string here of name to get user  
 
-  login(name: string) { //pass in string here of name to get user
-    this.userService.getUser(name)
-      .subscribe((data) => this.authenticate(this.user = data))
+      this.userService.getUser(name)
+        .subscribe((data) => this.authenticate(data))
+    }
+
+
+  authenticate(data: User) {
+
+    if (this.validUser(data)) {
+
+      this.user = data
+
+      this.debugStatements(data);
+
+      if (this.user.password == this.password) {
+        this.message = 'Welcome!'
+      }
+      else {
+        this.message = this.errMsg
+      }
+
+    } else {
+      this.message = this.errMsg
+    }
 
 
   }
 
+  validUser(data: User) {
+    if (data != null ) {
+      return true;
+    } 
+    return false;
+  }
 
-  authenticate(user: User) {
-    if (this.user.password == this.password) {
-      console.log(user)
-      console.log(' The Users actual password: ' + this.user.password)
-      console.log(' Password entered into form: ' + this.password)
-      this.message = 'Login Successful'
-    }
-    else {
-      console.log(' The Users actual password: ' + this.user.password)
-      console.log(' Password entered into form: ' + this.password)
-      this.message = 'Username or password is incorrect'
-    }
+
+
+
+
+
+
+  debugStatements(data: User) {
+
+    console.log('Authenticating:');
+    console.log('User information from Firebase:');
+    console.log(data);
+
+    console.log('Data entered into form:');
+    console.log('userName: ' + this.userName);
+    console.log('password: ' + this.password);
+
   }
 
 

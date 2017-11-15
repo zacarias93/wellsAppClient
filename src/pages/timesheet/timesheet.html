@@ -75,7 +75,7 @@
   </div>
   <h2>Time Worked: </h2> <input [(ngModel)]="totalTimeWorked"> 
 
-  <form (ngSubmit)="submitTimeSheet()">
+  <form hidden (ngSubmit)="submitTimeSheet()">
     <button ion-button type="submit"> submitTimesheet() </button>
   </form>
 

@@ -12,36 +12,70 @@ import 'rxjs/add/operator/toPromise';
 export class TimeSheetService {
     constructor(private http: Http) { }
 
-    private url = 'localhost:8080/timecard'
+    private baseUrl = 'localhost:8080/timecard'
+
+
+    private usersURL = 'https://wellsapp-9ef37.firebaseio.com/'
+    private auth = '.json?auth=MTnhWFwoABcCIpqaVPZA0YjEN7aFMo40c0GGAQwb'
+
+
+    // getTimesheets() {    THIS WORKS!! I GET DATA BACK
+
+    //     var firebaseURL: string = this.usersURL + 'z' + this.auth;
+    //     console.log(firebaseURL)
+
+    //     return this.http.get(firebaseURL)
+    //         .map((res: Response) => res.json())
+    //         .catch(this.handleError);
+    // }
 
 
     getTimesheets() {
+
         console.log('Service: getTimesheets()')
-        console.log('URL: ' + this.url)
+        console.log('URL: ' + this.baseUrl)
 
         return this.http
-            .get(this.url)
-            .map((res: Response) => res.json() ) 
+            .get(this.baseUrl)
+            // .map((res: Response) => res.json())
+            .map((res: Response) =>res.json())
             .catch(this.handleError);
-
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     submitTimeSheet(timesheet: TimeSheet) {
         console.log('Service: submitTimeSheet()')
-        console.log('URL: ' + this.url);
+        console.log('URL: ' + this.baseUrl);
         console.log(timesheet);
 
-        
-        // return this.http.post(url,timesheet)
-        //     .toPromise()
-        //     .then((res: Response) => res.json())
-        //     .catch(this.handleError);
 
+        return this.http
+            .post(this.baseUrl, timesheet)
+            .subscribe(res => {
+                console.log(res);
+            },
+            err => {
+                console.log("Error occured");
+            });
     }
-
-
-
 
 
     handleError(error: any): Promise<any> {

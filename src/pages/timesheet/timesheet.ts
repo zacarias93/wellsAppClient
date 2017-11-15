@@ -151,10 +151,41 @@ export class TimeSheetPage {
     }
   }
 
+
+
+
+
+
   getTimeSheets() {
     this.timeSheetService.getTimesheets()
       .subscribe((data) => console.log(data))
+
+      console.log('post submitTimeSheet')
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   submitTimeSheet() {
     console.log('submitTimeSheet()')
@@ -163,18 +194,9 @@ export class TimeSheetPage {
     console.log(timesheet);
     
     this.timeSheetService.submitTimeSheet(timesheet)
-      // .subscribe((data) => this.printData(this.timesheet = data))
-    
+         
   }
 
-
-
-
-
-
-  printData(timesheet: TimeSheet) {
-    console.log(timesheet)
-  }
 
 }
 
