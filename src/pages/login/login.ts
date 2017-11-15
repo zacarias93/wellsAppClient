@@ -21,7 +21,7 @@ export class LoginPage {
 
   errMsg: string = 'Invalid username or password.'
 
-  user: User = new User(0, '', '', '', 0)
+  user: User = new User(0, '', '', '', '', 0)
 
   login(name: string) { //pass in string here of name to get user  
 
@@ -39,7 +39,7 @@ export class LoginPage {
       this.debugStatements(data);
 
       if (this.user.password == this.password) {
-        this.message = 'Welcome!'
+        this.message = 'Welcome ' + this.user.firstName + '!'
       }
       else {
         this.message = this.errMsg
@@ -58,11 +58,6 @@ export class LoginPage {
     } 
     return false;
   }
-
-
-
-
-
 
 
   debugStatements(data: User) {

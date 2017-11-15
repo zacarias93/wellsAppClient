@@ -26,12 +26,11 @@ export class TimeSheetPage {
   ngOnInit() {
     console.log(this.activeUser);
     this.loadJobs();
-    this.loadTimes();
     this.selectedJob = this.listOfJobs[0]
     this.totalTimeWorked = '8 hours'
   }
 
-  activeUser = new User(99, 'pass', 'Sample', 'User', 99)
+  activeUser = new User(99, 'userName', 'pass', 'Sample', 'User', 99)
   selectedJob: any = null;
   listOfJobs: any = null;
   timesheet: TimeSheet
@@ -45,31 +44,24 @@ export class TimeSheetPage {
     this.listOfJobs = listOfJobs;
   }
 
-  loadTimes() {
-    this.hourIn = '09';
-    this.minuteIn = '00';
-    this.meridianIn = 'AM';
-    this.hourOut = '05';
-    this.minuteOut = '30';
-    this.meridianOut = 'PM'
-  }
+
 
   selectJob(job) {
     this.selectedJob = job;
     console.log(this.selectedJob);
   }
 
-  // hours = TimeSheet.hours;
-  // minutes = TimeSheet.minutes;
-  // meridians = TimeSheet.meridians
+  hours = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+  minutes = ['00', '15', '30', '45'];
+  meridians = ['AM', 'PM']
 
-  hourIn: string;
-  minuteIn: string;
-  meridianIn: string;
+  hourIn: string = '08';
+  minuteIn: string = '30';
+  meridianIn: string = 'AM';
 
-  hourOut: string;
-  minuteOut: string;
-  meridianOut: string;
+  hourOut: string = '05';
+  minuteOut: string = '00';
+  meridianOut: string = 'PM';
 
   totalTimeWorked: string;
   errorMessage: string;
@@ -156,11 +148,13 @@ export class TimeSheetPage {
 
 
 
+  // Service Calls
+
   getTimeSheets() {
     this.timeSheetService.getTimesheets()
       .subscribe((data) => console.log(data))
 
-      console.log('post submitTimeSheet')
+    console.log('post submitTimeSheet')
   }
 
 
@@ -192,9 +186,9 @@ export class TimeSheetPage {
 
     var timesheet = new TimeSheet(this.activeUser, this.selectedJob, this.totalTimeWorked);
     console.log(timesheet);
-    
+
     this.timeSheetService.submitTimeSheet(timesheet)
-         
+
   }
 
 
