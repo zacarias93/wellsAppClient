@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-// import { User } from '../model/user';
 import { TimeSheet } from '../model/timesheet';
+
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -35,30 +35,15 @@ export class TimeSheetService {
         console.log('Service: getTimesheets()')
         console.log('URL: ' + this.baseUrl)
 
-        return this.http
-            .get(this.baseUrl)
-            // .map((res: Response) => res.json())
-            .map((res: Response) =>res.json())
-            .catch(this.handleError);
+        //Implement once we fix DB
+
+
+
+        // return this.http
+        //     .get(this.baseUrl)
+        //     .map((res: Response) => res.json())
+        //     .catch(this.handleError);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     submitTimeSheet(timesheet: TimeSheet) {
@@ -66,16 +51,44 @@ export class TimeSheetService {
         console.log('URL: ' + this.baseUrl);
         console.log(timesheet);
 
+        // this.db.addTimeSheet(timesheet);
 
-        return this.http
-            .post(this.baseUrl, timesheet)
-            .subscribe(res => {
-                console.log(res);
-            },
-            err => {
-                console.log("Error occured");
-            });
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // submitTimeSheet(timesheet: TimeSheet) {
+    //     console.log('Service: submitTimeSheet()')
+    //     console.log('URL: ' + this.baseUrl);
+    //     console.log(timesheet);
+
+
+    //     return this.http
+    //         .post(this.baseUrl, timesheet)
+    //         .subscribe(res => {
+    //             console.log(res);
+    //         },
+    //         err => {
+    //             console.log("Error occured");
+    //         });
+    // }
 
 
     handleError(error: any): Promise<any> {

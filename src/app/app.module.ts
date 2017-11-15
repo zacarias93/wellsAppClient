@@ -6,15 +6,6 @@ import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { HttpModule } from '@angular/http';
-// import { AngularFireModule } from "angularfire2";
-
-// export const firebaseConfig = {
-// apiKey: ' AIzaSyD2pUMVLPOqnCuqaO6Imi3aKCzVyDOVjuI',
-// authDomain: "wellsapp-9ef37.firebaseapp.com",
-// databaseURL: '',
-// storageBucket: '',
-// messagingSenderId: ''
-// };
 
 @NgModule({
   declarations: [
@@ -27,7 +18,6 @@ import { HttpModule } from '@angular/http';
   imports: [
     IonicModule.forRoot(MyApp),
     HttpModule,
-    // AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

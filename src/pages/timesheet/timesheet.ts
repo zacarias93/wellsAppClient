@@ -152,7 +152,7 @@ export class TimeSheetPage {
 
   getTimeSheets() {
     this.timeSheetService.getTimesheets()
-      .subscribe((data) => console.log(data))
+      // .subscribe((data) => console.log(data))
 
     console.log('post submitTimeSheet')
   }

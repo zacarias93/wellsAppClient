@@ -25,9 +25,15 @@ export class LoginPage {
 
   login(name: string) { //pass in string here of name to get user  
 
-      this.userService.getUser(name)
+    if (name == '' || name == undefined) {
+      this.message = 'Please enter a username.'
+    } else {
+      
+      this.userService
+        .getUser(name)
         .subscribe((data) => this.authenticate(data))
     }
+  }
 
 
   authenticate(data: User) {
@@ -35,15 +41,12 @@ export class LoginPage {
     if (this.validUser(data)) {
 
       this.user = data
-
       this.debugStatements(data);
 
       if (this.user.password == this.password) {
         this.message = 'Welcome ' + this.user.firstName + '!'
       }
-      else {
-        this.message = this.errMsg
-      }
+      else { this.message = this.errMsg }
 
     } else {
       this.message = this.errMsg
@@ -53,9 +56,9 @@ export class LoginPage {
   }
 
   validUser(data: User) {
-    if (data != null ) {
+    if (data != null) {
       return true;
-    } 
+    }
     return false;
   }
 
