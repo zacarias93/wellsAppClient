@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { TimeSheet } from '../model/timesheet';
-
+import {DB} from '../db';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -33,12 +33,11 @@ export class TimeSheetService {
     getTimesheets() {
 
         console.log('Service: getTimesheets()')
-        console.log('URL: ' + this.baseUrl)
 
+        console.log('Timesheets: \n');
+        DB.displayTimeSheets(DB.getActiveUser())
+    
         //Implement once we fix DB
-
-
-
         // return this.http
         //     .get(this.baseUrl)
         //     .map((res: Response) => res.json())
@@ -51,7 +50,7 @@ export class TimeSheetService {
         console.log('URL: ' + this.baseUrl);
         console.log(timesheet);
 
-        // this.db.addTimeSheet(timesheet);
+        DB.addTimeSheet(timesheet);
 
     }
 

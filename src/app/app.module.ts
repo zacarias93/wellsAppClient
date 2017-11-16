@@ -3,16 +3,16 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { TimeSheetPage } from '../pages/timesheet/timesheet';
 import { LoginPage } from '../pages/login/login';
-import { HomePage } from '../pages/home/home';
+import { AdminPage } from '../pages/admin/admin';
 import { TabsPage } from '../pages/tabs/tabs';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
     MyApp,
-    TimeSheetPage,
     LoginPage,
-    HomePage,
+    TimeSheetPage,
+    AdminPage,
     TabsPage
   ],
   imports: [
@@ -22,9 +22,9 @@ import { HttpModule } from '@angular/http';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    TimeSheetPage,
     LoginPage,
-    HomePage,
+    TimeSheetPage,
+    AdminPage,
     TabsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]

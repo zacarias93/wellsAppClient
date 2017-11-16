@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { UserService } from '../../service/userService';
 import { User } from '../../model/user';
+import { DB } from '../../db'
 // import { Observable } from 'rxjs/Observable'
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  providers: [UserService]
+  providers: [UserService, DB]
 })
 export class LoginPage {
   registerCredentials = { email: '', password: '' };
@@ -16,12 +17,14 @@ export class LoginPage {
 
   userName: string
   password: string
-
   message: string
-
   errMsg: string = 'Invalid username or password.'
+  user: User 
 
-  user: User = new User(0, '', '', '', '', 0)
+  ngOnInit() {
+    DB.initDB();
+    this.user = DB.getActiveUser();
+  }
 
   login(name: string) { //pass in string here of name to get user  
 
@@ -45,13 +48,13 @@ export class LoginPage {
 
       if (this.user.password == this.password) {
         this.message = 'Welcome ' + this.user.firstName + '!'
-      }
-      else { this.message = this.errMsg }
+        // console.log('ZAC TESTING: ' );
+        // console.log(this.user);
+        DB.setActiveUser(this.user);
 
-    } else {
-      this.message = this.errMsg
-    }
+      } else this.message = this.errMsg 
 
+    } else this.message = this.errMsg
 
   }
 

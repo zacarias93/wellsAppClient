@@ -7,13 +7,13 @@ import { Job } from '../../model/job';
 import { User } from '../../model/user';
 import { UserService } from '../../service/userService';
 import { TimeSheetService } from '../../service/timesheetService';
-
+import { DB } from '../../db';
 
 
 @Component({
   selector: 'page-timesheet',
   templateUrl: 'timesheet.html',
-  providers: [UserService, TimeSheetService],
+  providers: [UserService, TimeSheetService, DB],
 
 
 })
@@ -30,7 +30,7 @@ export class TimeSheetPage {
     this.totalTimeWorked = '8 hours'
   }
 
-  activeUser = new User(99, 'userName', 'pass', 'Sample', 'User', 99)
+  activeUser = DB.getActiveUser();
   selectedJob: any = null;
   listOfJobs: any = null;
   timesheet: TimeSheet
@@ -143,49 +143,13 @@ export class TimeSheetPage {
     }
   }
 
-
-
-
-
-
   // Service Calls
-
-  getTimeSheets() {
-    this.timeSheetService.getTimesheets()
-      // .subscribe((data) => console.log(data))
-
-    console.log('post submitTimeSheet')
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   submitTimeSheet() {
     console.log('submitTimeSheet()')
 
     var timesheet = new TimeSheet(this.activeUser, this.selectedJob, this.totalTimeWorked);
-    console.log(timesheet);
+    // console.log(timesheet);
 
     this.timeSheetService.submitTimeSheet(timesheet)
 

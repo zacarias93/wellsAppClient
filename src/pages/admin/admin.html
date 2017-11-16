@@ -8,9 +8,10 @@
 
   <h2> TimeSheets </h2>
 
+  <h4> Active User: {{activeUser.firstName + ' ' + activeUser.lastName}} </h4>
+
   <form (ngSubmit)="getTimeSheets()">
     <button ion-button type="getTimeSheets"> getTimeSheets() </button>
   </form>
-  
 
 </ion-content>
