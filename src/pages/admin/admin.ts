@@ -14,9 +14,13 @@ import { Job } from '../../model/job';
 })
 export class AdminPage {
 
-  constructor(public navCtrl: NavController, private timeSheetService: TimeSheetService, private db: DB) { }
+  constructor(public navCtrl: NavController, private timeSheetService: TimeSheetService) {
+    this.activeUser = DB.getActiveUser()
+  }
 
-  activeUser = DB.getActiveUser()
+  activeUser: User;
+  timeSheets: TimeSheet[];
+  selectedTimeSheet;
 
   ngOnInit() {
     this.initDB();
@@ -24,37 +28,33 @@ export class AdminPage {
 
   getTimeSheets() {
     this.refreshPage()
-    this.timeSheetService.getTimesheets()
-    // .subscribe((data) => console.log(data))
+    this.timeSheetService
+      .getTimesheets()
+      .subscribe((data) => this.inputTimeSheets(data))
 
-    // console.log('Timesheets: \n');
-    // DB.displayTimeSheets()
+  }
 
-    // console.log('Active User: \n');
-    // console.log(DB.getActiveUser());
+  inputTimeSheets( timeSheetArray: TimeSheet[] ) {
+    this.timeSheets = timeSheetArray
+    console.log(this.timeSheets);
+  }
+
+  showTimeSheet(timeSheet: TimeSheet) {
+    console.log(timeSheet);
   }
 
   initDB() {
-    var user = new User(1, 'z', 'pass', 'zac', 'lee', 99);
+    var user = new User(1, 'z', 'pass', 'Zac', 'Lee', 99);
     var job = new Job(1, 'JPMC');
     var ts1 = new TimeSheet(user, job, '8');
 
-    var user1 = new User(2, 'c', 'pass', 'chris', 'wells', 99);
-    var job2 = new Job(2, 'Solidified');
-    var ts2 = new TimeSheet(user1, job2, '20');
-
-    DB.addTimeSheet(ts1);
-    DB.addTimeSheet(ts2);
-
-    DB.setActiveUser(user);
-
     this.refreshPage();
+
+    this.selectedTimeSheet = ts1;
   }
 
   refreshPage() {
     this.activeUser = DB.getActiveUser();
-    console.log('activeUser: ');
-    console.log(this.activeUser);
   }
 
 

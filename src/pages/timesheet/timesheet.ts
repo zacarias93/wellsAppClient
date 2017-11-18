@@ -116,6 +116,9 @@ export class TimeSheetPage {
   }
 
   calcHoursWorked() {
+
+    this.activeUser = DB.getActiveUser();    
+
     this.totalTimeWorked = ''
     this.errorMessage = null;
     var timeMap = this.convertToMilitary()
@@ -148,11 +151,19 @@ export class TimeSheetPage {
   submitTimeSheet() {
     console.log('submitTimeSheet()')
 
+    this.activeUser = DB.getActiveUser();
+
     var timesheet = new TimeSheet(this.activeUser, this.selectedJob, this.totalTimeWorked);
     // console.log(timesheet);
 
     this.timeSheetService.submitTimeSheet(timesheet)
 
+  }
+
+  getTimeSheets() {
+
+    this.timeSheetService.getTimesheets().subscribe(console.log)
+    
   }
 
 

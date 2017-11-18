@@ -4,7 +4,7 @@
       Time Sheet
     </ion-title>
 
-    <h4>Employee ID: </h4>
+    <h4>Employee ID: {{activeUser.ID}}</h4>
   </ion-navbar>
 </ion-header>
 
@@ -78,6 +78,10 @@
   <form (ngSubmit)="submitTimeSheet()">
     <button ion-button type="submit"> submitTimesheet() </button>
   </form>
+
+  <form (ngSubmit)="getTimeSheets()">
+      <button ion-button type="submit"> getTimeSheets() </button>
+    </form>
   
 </div>
 

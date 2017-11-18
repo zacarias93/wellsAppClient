@@ -1,12 +1,12 @@
 export class Job {
-  constructor(id: number, name: string) {
-    this.id = id
+  constructor(ID: number, name: string) {
+    this.ID = ID
     this.name = name
   }
-  id: number
+  ID: number
   name: string
 
   toString() {
-    return '\nID: ' + this.id + '\nName: ' + this.name
+    return '\nID: ' + this.ID + '\nName: ' + this.name
   }
 }

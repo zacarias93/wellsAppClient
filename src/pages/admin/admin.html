@@ -14,4 +14,26 @@
     <button ion-button type="getTimeSheets"> getTimeSheets() </button>
   </form>
 
+
+  <div align="center">
+    <h3>Select TimeSheet:</h3>
+    <select [(ngModel)]="selectedTimeSheet" (ngModelChange)="showTimeSheet(selectedTimeSheet)">
+      <option *ngFor="let timeSheet of timeSheets" [ngValue]="timeSheet">
+        {{ timeSheet.employeeFirstName + ' ' + timeSheet.employeeLastName + ' - ' + timeSheet.jobName + ' - ' + timeSheet.dateString }}
+        
+      </option>
+    </select>
+  </div>
+
+  <div align="left">
+    <h3>
+      <br> Selected TimeSheet:</h3>
+
+    <h6>Date: {{ selectedTimeSheet.dateString }} </h6>
+    <h6>Employee: {{ selectedTimeSheet.employeeFirstName + ' ' + selectedTimeSheet.employeeLastName + ' (' + selectedTimeSheet.employeeID + ')' }} </h6>
+    <h6>Job: {{ selectedTimeSheet.jobName + ' (' + selectedTimeSheet.jobID + ')' }} </h6>
+    <h6>Hours Worked: {{ selectedTimeSheet.hoursWorked }} </h6>
+    
+  </div>
+
 </ion-content>
