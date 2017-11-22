@@ -19,7 +19,7 @@ export class LoginPage {
   password: string
   message: string
   errMsg: string = 'Invalid username or password.'
-  user: User 
+  user: User
 
   ngOnInit() {
     DB.initDB();
@@ -31,7 +31,6 @@ export class LoginPage {
     if (name == '' || name == undefined) {
       this.message = 'Please enter a username.'
     } else {
-      
       this.userService
         .getUser(name)
         .subscribe((data) => this.authenticate(data))
@@ -52,7 +51,7 @@ export class LoginPage {
         // console.log(this.user);
         DB.setActiveUser(this.user);
 
-      } else this.message = this.errMsg 
+      } else this.message = this.errMsg
 
     } else this.message = this.errMsg
 
@@ -75,7 +74,6 @@ export class LoginPage {
     console.log('Data entered into form:');
     console.log('userName: ' + this.userName);
     console.log('password: ' + this.password);
-
   }
 
 

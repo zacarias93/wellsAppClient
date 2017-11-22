@@ -30,11 +30,10 @@ export class TimeSheetService {
         console.log('URL: ' + this.baseUrl);
         console.log(timesheet);
 
-
         return this.http
             .post(this.baseUrl, timesheet)
             .subscribe(res => {
-                console.log(res);
+                console.log('statusText: ' + res.statusText);
             },
             err => {
                 console.log("Error occured");

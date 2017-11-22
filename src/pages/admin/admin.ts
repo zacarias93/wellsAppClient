@@ -23,18 +23,19 @@ export class AdminPage {
   selectedTimeSheet;
 
   ngOnInit() {
-    this.initDB();
+    this.initPage();
   }
 
   getTimeSheets() {
-    this.refreshPage()
+
+    this.activeUser = DB.getActiveUser();
+
     this.timeSheetService
       .getTimesheets()
-      .subscribe((data) => this.inputTimeSheets(data))
-
+      .subscribe((data) => this.handleTimeSheets(data))
   }
 
-  inputTimeSheets( timeSheetArray: TimeSheet[] ) {
+  handleTimeSheets( timeSheetArray: TimeSheet[] ) {
     this.timeSheets = timeSheetArray
     console.log(this.timeSheets);
   }
@@ -43,22 +44,12 @@ export class AdminPage {
     console.log(timeSheet);
   }
 
-  initDB() {
+  initPage() {
     var user = new User(1, 'z', 'pass', 'Zac', 'Lee', 99);
     var job = new Job(1, 'JPMC');
     var ts1 = new TimeSheet(user, job, '8');
 
-    this.refreshPage();
-
+    this.activeUser = DB.getActiveUser();
     this.selectedTimeSheet = ts1;
   }
-
-  refreshPage() {
-    this.activeUser = DB.getActiveUser();
-  }
-
-
-
-
-
 }

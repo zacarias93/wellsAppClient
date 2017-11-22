@@ -14,13 +14,10 @@ import { DB } from '../../db';
   selector: 'page-timesheet',
   templateUrl: 'timesheet.html',
   providers: [UserService, TimeSheetService, DB],
-
-
 })
 
 export class TimeSheetPage {
   constructor(public navCtrl: NavController, private userService: UserService, private timeSheetService: TimeSheetService) {
-
   }
 
   ngOnInit() {
@@ -44,12 +41,23 @@ export class TimeSheetPage {
     this.listOfJobs = listOfJobs;
   }
 
-
-
   selectJob(job) {
     this.selectedJob = job;
     console.log(this.selectedJob);
   }
+
+  //Service Calls
+
+  submitTimeSheet() {
+    this.activeUser = DB.getActiveUser();
+    this.calcHoursWorked();
+    var timesheet = new TimeSheet(this.activeUser, this.selectedJob, this.totalTimeWorked);
+    this.timeSheetService.submitTimeSheet(timesheet)
+  }
+
+
+
+  //Time logic - find library?
 
   hours = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
   minutes = ['00', '15', '30', '45'];
@@ -117,7 +125,7 @@ export class TimeSheetPage {
 
   calcHoursWorked() {
 
-    this.activeUser = DB.getActiveUser();    
+    this.activeUser = DB.getActiveUser();
 
     this.totalTimeWorked = ''
     this.errorMessage = null;
@@ -144,26 +152,6 @@ export class TimeSheetPage {
     else {
       this.totalTimeWorked = totalTimeWorked + ' hours';
     }
-  }
-
-  // Service Calls
-
-  submitTimeSheet() {
-    console.log('submitTimeSheet()')
-
-    this.activeUser = DB.getActiveUser();
-
-    var timesheet = new TimeSheet(this.activeUser, this.selectedJob, this.totalTimeWorked);
-    // console.log(timesheet);
-
-    this.timeSheetService.submitTimeSheet(timesheet)
-
-  }
-
-  getTimeSheets() {
-
-    this.timeSheetService.getTimesheets().subscribe(console.log)
-    
   }
 
 
